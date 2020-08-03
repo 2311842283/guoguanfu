@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.cookie的设置
+        // document.cookie = 'name=zhangsan';
+        // document.cookie = 'age=100';
+        // document.cookie = 'sex=男';
+
+
+        //2.带有过期时间的cookie
+        // let d = new Date();
+        // d.setDate(d.getDate() + 10); //先获取当前的日期，然后+10天，赋值给当前的日期。
+        // document.cookie = 'username=张三;expires=' + d
+
+        //3.路径：不同的文件夹里面的文件之间cookie不能互相访问，设置路径解决：'/',表示根目录可以互相访问。
+        // console.log(document.cookie);
+
+        //4.中文问题
+        //encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。(中文和特殊字符)
+        // let d = new Date();
+        // d.setDate(d.getDate() + 10); //先获取当前的日期，然后+10天，赋值给当前的日期。
+        // document.cookie = `name=${encodeURIComponent('王五')};expires=${d};path=/`;
+
+        //5.封装
+        function setcookie(key, value, day) {
+            let d = new Date();
+            d.setDate(d.getDate() + day);
+            document.cookie = `${key}=${encodeURIComponent(value)};expires=${d};path=/`;
+        }
+
+        // setcookie('data', ['zhangsan', 'lisi', 'wangwu'], 7);
+        // setcookie('name', ['zhangsan', 'lisi', 'wangwu'], 7);
+
+        let obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+        // console.log(JSON.stringify(obj));
+        setcookie('objdata', JSON.stringify(obj), 7);
+    </script>
+</body>
+
+</html>

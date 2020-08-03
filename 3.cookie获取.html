@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../JS2004.js"></script>
+    <script>
+        setcookie('name', 'zhangsan', 7);
+        setcookie('age', '100', 7);
+        setcookie('sex', '男', 7);
+
+        //1.获取cookie,获取所有的cookie
+        // alert(document.cookie);
+
+        //2.解码
+        // alert(decodeURIComponent(document.cookie)); //name=zhangsan; age=100; sex=男  字符串
+
+        function getcookie(key) {
+            let arr = decodeURIComponent(document.cookie).split('; '); //["name=zhangsan", "age=100", "sex=男"]
+            for (let value of arr) {
+                let newarr = value.split('=');
+                if (key === newarr[0]) {
+                    return newarr[1];
+                }
+            }
+        }
+
+        // console.log(getcookie('name')); //zhangsan
+        // console.log(getcookie('age')); //100
+        // console.log(getcookie('sex')); //男
+        // console.log(getcookie('sex123')); //undefined
+    </script>
+</body>
+
+</html>
